@@ -1,15 +1,13 @@
 package ru.netology.manager;
 
-import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import ru.netology.domain.Flight;
-import ru.netology.repository.FlightRepository;
 import ru.netology.exception.AlreadyExistsException;
+import ru.netology.repository.FlightRepository;
 
 import java.util.Arrays;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class FlightManager {

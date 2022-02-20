@@ -2,8 +2,8 @@ package ru.netology.manager;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.netology.domain.Flight;
 import ru.netology.exception.AlreadyExistsException;
@@ -14,7 +14,7 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class FlightManagerTest {
+public class FlightManagerTestNonEmpty {
     @Mock
     private FlightRepository repository;
     @InjectMocks
