@@ -10,10 +10,10 @@ public class Flight implements Comparable<Flight> {
     private double price;
     private String from;
     private String to;
-    private int time;
+    private int duration;
 
     public boolean matches(String from, String to) {
-        return (this.from.equals(from) && this.to.equals(to));
+        return (this.from.equalsIgnoreCase(from) && this.to.equalsIgnoreCase(to));
     }
 
     @Override

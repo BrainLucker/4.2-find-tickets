@@ -6,18 +6,29 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FlightTest {
-    private Flight flight1 = new Flight(1, 70_000, "VKO", "HND", 567);
-    private Flight flight2 = new Flight(2, 50_000, "VHO", "HND", 567);
-    private Flight flight3 = new Flight(3, 90_000, "VKH", "HND", 567);
+    private Flight flight = new Flight(1, 70_000, "VKO", "HND", 567);
 
     @ParameterizedTest
     @CsvSource({
-            "Success, VKO, HND, true",
-            "Not Found 1, VKO, VKO, false",
-            "Not Found 2, HND, HND, false"
+            "Upper case, VKO, HND, true",
+            "Lower case, vko, hnd, true",
+            "Match from, No Match to, VKO, VKO, false",
+            "Match to, No Match from, HND, HND, false"
     })
     public void shouldMatchesFlights(String name, String from, String to, boolean expected) {
-        boolean actual = flight1.matches(from, to);
+        boolean actual = flight.matches(from, to);
+        assertEquals(actual, expected);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "Lower Price, 69999, 1",
+            "Higher Price, 70001, -1",
+            "Equal Price, 70000, 0"
+    })
+    public void shouldCompareTo(String name, int price, int expected) {
+        Flight testFlight = new Flight(0, price, "", "", 0);
+        int actual = flight.compareTo(testFlight);
         assertEquals(actual, expected);
     }
 }

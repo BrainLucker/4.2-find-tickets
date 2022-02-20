@@ -6,13 +6,15 @@ import ru.netology.exception.AlreadyExistsException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FlightRepositoryTest {
 
-    private Flight flight1 = new Flight(1, 90_000, "VKO", "HND", 567);
-    private Flight flight2 = new Flight(2, 50_000, "VKO", "HND", 567);
-    private Flight newFlight = new Flight(3, 70_000, "VKO", "HND", 567);
+    private Flight flight1 = new Flight(1, 70_000, "VKO", "HND", 567);
+    private Flight flight2 = new Flight(2, 90_000, "SVO", "LAX", 765);
+    private Flight flight3 = new Flight(3, 50_000, "DME", "LHR", 255);
     private Flight[] flights = new Flight[]{flight1, flight2};
     private FlightRepository repository = new FlightRepository(flights);
 
@@ -25,9 +27,9 @@ public class FlightRepositoryTest {
 
     @Test
     public void shouldSave() throws AlreadyExistsException {
-        repository.save(newFlight);
+        repository.save(flight3);
         Flight[] actual = repository.findAll();
-        Flight[] expected = new Flight[]{flight1, flight2, newFlight};
+        Flight[] expected = new Flight[]{flight1, flight2, flight3};
         assertArrayEquals(expected, actual);
     }
 
@@ -46,6 +48,14 @@ public class FlightRepositoryTest {
 
     @Test
     public void shouldTrowNotFoundException() {
-        Assertions.assertThrows(NotFoundException.class, () -> repository.removeById(3));
+        Assertions.assertThrows(NotFoundException.class, () -> repository.removeById(4));
+    }
+
+    @Test
+    public void shouldSortByPrice() {
+        Flight[] expected = new Flight[]{flight3, flight1, flight2};
+        Flight[] actual = new Flight[]{flight1, flight2, flight3};
+        Arrays.sort(actual);
+        assertArrayEquals(expected, actual);
     }
 }
