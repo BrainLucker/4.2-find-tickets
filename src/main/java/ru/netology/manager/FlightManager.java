@@ -1,6 +1,5 @@
 package ru.netology.manager;
 
-import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import ru.netology.domain.Flight;
@@ -10,7 +9,6 @@ import ru.netology.repository.FlightRepository;
 import java.util.Arrays;
 import java.util.Comparator;
 
-@NoArgsConstructor
 @AllArgsConstructor
 @Data
 public class FlightManager {
