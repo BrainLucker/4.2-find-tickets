@@ -14,7 +14,7 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-public class FlightManagerTestNonEmpty {
+public class FlightManagerTest {
     @Mock
     private FlightRepository repository;
     @InjectMocks
