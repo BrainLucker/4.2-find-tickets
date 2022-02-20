@@ -19,7 +19,7 @@ public class FlightManager {
         repository.save(flight);
     }
 
-    public Flight[] searchByIATA(String from, String to) {
+    public Flight[] findAll(String from, String to) {
         Flight[] result = new Flight[0];
         Flight[] tmp;
         int length = 0;

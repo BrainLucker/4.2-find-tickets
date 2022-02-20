@@ -38,20 +38,20 @@ public class FlightManagerTest {
     }
 
     @Test
-    public void shouldSearchAndSortByPrice() {
+    public void shouldFindAllAndSortByPrice() {
         doReturn(returned).when(repository).findAll();
 
-        Flight[] actual = manager.searchByIATA("VKO", "HND");
+        Flight[] actual = manager.findAll("VKO", "HND");
         Flight[] expected = new Flight[]{flight3, flight1, flight2};
         assertArrayEquals(expected, actual);
         verify(repository).findAll();
     }
 
     @Test
-    public void shouldSearchAndSortByPriceWithEqualPrices() {
+    public void shouldFindAllAndSortByPriceWithEqualPrices() {
         doReturn(returned).when(repository).findAll();
 
-        Flight[] actual = manager.searchByIATA("VKO", "LAX");
+        Flight[] actual = manager.findAll("VKO", "LAX");
         Flight[] expected = new Flight[]{flight5, flight6, flight4};
         // Ожидаем увидеть равные по цене билеты в том же порядке
         assertArrayEquals(expected, actual);
@@ -59,10 +59,10 @@ public class FlightManagerTest {
     }
 
     @Test
-    public void shouldSearchAndReturnEmptyArray() {
+    public void shouldFindAllAndReturnEmptyArray() {
         doReturn(returned).when(repository).findAll();
 
-        Flight[] actual = manager.searchByIATA("HND", "LAX");
+        Flight[] actual = manager.findAll("HND", "LAX");
         Flight[] expected = new Flight[0];
         assertArrayEquals(expected, actual);
         verify(repository).findAll();
